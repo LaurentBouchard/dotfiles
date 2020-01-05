@@ -1,0 +1,258 @@
+; ------
+; Colors
+
+[colors]
+	bar_bg = ${xrdb:color0}
+	bar_fg = ${xrdb:color7}
+
+	border_col = ${xrdb:color0}
+
+	modules_bg = ${xrdb:color0}
+	modules_fg = ${xrdb:color7}
+
+	mod_bg = ${xrdb:color7}
+
+	modules_prefix_bg = ${xrdb:color7}
+	modules_prefix_fg = ${xrdb:color0}
+
+        mode_fg = ${xrdb:color7}
+        visible_fg = ${xrdb:color7}
+	urgent_fg = ${xrdb:color1}
+	focused_fg = ${xrdb:color3}
+	unfocused_fg = ${xrdb:color8}
+
+	cpu_p_bg = ${xrdb:color2}
+	ram_p_bg = ${xrdb:color3}
+	vol_p_bg = ${xrdb:color4}
+	time_p_bg = ${xrdb:color0}
+	down_p_bg = ${xrdb:color6}
+
+; ----
+; Bars
+
+[bar/base]
+	tray-position = left
+	width = 100%
+	height = 32
+	offset-x = 0
+	offset-y = 0
+
+	bottom = false
+
+	background = #000f0f0f
+	foreground = ${xrdb:color7}
+
+	border-bottom-size = 0
+	border-top-size = 10
+
+	border-left-size = 20
+	border-right-size = 30
+
+	border-bottom-color = #000f0f0f
+	border-top-color    = #000f0f0f
+
+	border-left-color  = #000f0f0f
+	border-right-color = #000f0f0f
+
+	spacing            = 0
+	padding-left       = 0
+	padding-right      = 0
+	module-margin-left = 0
+
+	font-0 = Siji:size=4;2
+	font-1 = DejaVu Mono:size=10;3
+
+	modules-right = down paddinglite cpu paddinglite ram paddinglite volume
+        modules-left = workspaces
+        modules-center = date
+	fixed-center = true
+	monitor = DVI-D-0
+
+[bar/opt]
+        width = 100%
+        height = 32
+        offset-x = 0
+        offset-y = 0
+
+        bottom = false
+        background = #000f0f0f
+        foreground = ${xrdb:color7}
+
+	border-bottom-size = 0
+	border-top-size = 10
+
+	border-left-size = 20
+	border-right-size = 30
+
+	border-bottom-color = #000f0f0f
+	border-top-color    = #000f0f0f
+
+	border-left-color  = #000f0f0f
+	border-right-color = #000f0f0f
+
+	spacing            = 0
+	padding-left       = 0
+	padding-right      = 0
+	module-margin-left = 0
+
+	font-0 = Siji:size=4;2
+	font-1 = DejaVu Mono:size=10;3
+
+        modules-left = workspaces
+        fixed-center = true
+        monitor = ${env:MONITOR}
+
+; -------
+; Modules
+
+[module/network]
+	type		= internal/network
+	interface	= enp0s31f6
+	ping-interval	= 3
+
+[module/date]
+	type		= internal/date
+	interval	= 1.0
+	time		= "%H:%M:%S"
+        date            = "%Y-%m-%d"
+	label		= "%date% - %time%"
+
+	format		= <label>
+	format-padding	= 0
+
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding	 = 4
+
+;[module/previous]
+;[module/playpause]
+;[module/next]
+;[module/music]
+
+[module/volume]
+	type = internal/pulseaudio
+	format-volume = <label-volume>
+
+	mapped = true
+
+	label-volume = "%percentage%%"
+	label-volume-background = ${colors.modules_bg}
+	label-volume-foreground = ${colors.modules_fg}
+	label-volume-padding = 1
+
+	format-muted = <label-muted>
+
+	label-muted = "0% (muted)"
+	label-muted-background = ${colors.modules_bg}
+	label-muted-foreground = ${colors.modules_fg}
+	label-muted-padding = 1
+
+	format-volume-padding = 0
+	format-muted-padding = 0
+
+	format-volume-prefix = "vol"
+	format-volume-prefix-padding = 1
+	format-volume-prefix-background = ${colors.vol_p_bg}
+	format-volume-prefix-foreground = ${colors.modules_prefix_fg}
+
+	format-muted-prefix = "vol"
+	format-muted-prefix-padding = 1
+	format-muted-prefix-background = ${colors.vol_p_bg}
+	format-muted-prefix-foreground = ${colors.modules_prefix_fg}
+
+[module/cpu]
+	type = internal/cpu
+	interval = 0.5
+	format = <label>
+	label = "%percentage%%"
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding = 1
+
+	format-prefix = "cpu"
+	format-prefix-padding = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+[module/ram]
+	type = internal/memory
+	interval = 3
+
+	format = <label>
+	label = "%percentage_used%%"
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding = 1
+
+	format-prefix = "ram"
+	format-prefix-padding = 1
+	format-prefix-background = ${colors.ram_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+[module/down]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix = "eth"
+	format-connected-prefix-background = ${colors.down_p_bg}
+	format-connected-prefix-foreground = ${colors.modules_prefix_fg}
+	format-connected-prefix-padding = 1
+
+	label-connected = %{T2}%downspeed:7%%{T-}
+	label-connected-background = ${colors.modules_bg}
+	label-connected-foreground = ${colors.modules_fg}
+	label-connected-padding = 1
+
+	format-disconnected = <label-disconnected>
+
+	format-disconnected-prefix = "eth"
+	format-disconnected-prefix-background = ${colors.down_p_bg}
+	format-disconnected-prefix-foreground = ${colors.modules_prefix_fg}
+	format-disconnected-prefix-padding = 1
+
+	label-disconnected = "disconnected"
+	label-disconnected-background = ${colors.modules_bg}
+	label-disconnected-foreground = ${colors.modules_fg}
+	label-disconnected-padding = 1
+
+[module/padding]
+	type = custom/text
+	content = ||
+	content-padding = 1
+	content-foreground = #000f0f0f
+	content-background = #000f0f0f
+
+[module/paddinglite]
+	type = custom/text
+	content = |
+	content-padding = 0.5
+	content-foreground = #000f0f0f
+	content-background = #000f0f0f
+
+[module/workspaces]
+	type = internal/i3
+	format = <label-state> <label-mode>
+	index-sort = true
+	wrapping-scroll = false
+	pin-workspaces = true
+
+	label-mode-background = ${colors.bar_bg}
+	label-mode-foreground = ${colors.mode_fg}
+	label-mode-padding    = 2
+
+	label-focused-background = ${colors.bar_fg}
+	label-focused-foreground = ${colors.bar_bg}
+	label-focused-padding    = 3
+
+	label-unfocused-background = ${colors.bar_bg}
+	label-unfocused-foreground = ${colors.unfocused_fg}
+	label-unfocused-padding    = 3
+
+	label-visible-background = ${colors.bar_bg}
+	label-visible-foreground = ${colors.visible_fg}
+	label-visible-padding    = 3
+
+	label-urgent-background = ${colors.bar_bg}
+	label-urgent-foreground = ${colors.urgent_fg}
+	label-urgent-padding    = 3

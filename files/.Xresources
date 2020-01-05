@@ -1,0 +1,35 @@
+! URXVT
+urxvt*termName:		rxvt-unicode
+urxvt*scrollBar:	false
+urxvt*font:		xft:DejaVu Sans Mono:pixelsize=13
+urxvt*boldFont:		xft:DejaVu Sans Mono:pixelsize=13:weight=bold
+
+! special
+*.foreground:	#FFFFFF
+*.background:	#000000
+!*.cursorColor:	
+
+! black
+*.color0:	#000000
+*.color8:	#4D4D4D
+! red
+*.color1:	#FF0000
+*.color9:	#B30000
+! green
+*.color2:	#00FF00
+*.color10:	#00B300
+! yellow
+*.color3:	#FFFF00
+*.color11:	#B3B300
+! blue
+*.color4:	#0000FF
+*.color12:	#0000B3
+! magenta
+*.color5:	#FF00FF
+*.color13:	#B300B3
+! cyan
+*.color6:	#00FFFF
+*.color14:	#00B3B3
+! white
+*.color7:	#FFFFFF
+*.color15:	#B3B3B3
