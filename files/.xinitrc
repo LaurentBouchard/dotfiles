@@ -16,7 +16,7 @@ feh --no-fehbg --bg-fill '/home/lrb/images/wallpapers/main_monitor' '/home/lrb/i
 # lockscreen
 /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -e -f &
 xidlehook --not-when-fullscreen --not-when-audio \
-	--timer 60 \
+	--timer 300 \
 		"xrandr --output DVI-D-0 --brightness .1;xrandr --output DVI-D-1 --brightness .1;xrandr --output HDMI-0 --brightness .1" \
 		"xrandr --output DVI-D-0 --brightness 1;xrandr --output DVI-D-1 --brightness 1;xrandr --output HDMI-0 --brightness 1" \
 	--timer 10 \
