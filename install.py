@@ -15,7 +15,8 @@ files  = [
   ".config/picom/picom.conf",
   ".config/picom/launch.sh",
   ".config/pavucontrol.ini",
-  ".config/Dharkael/flameshot.ini" ]
+  ".config/Dharkael/flameshot.ini",
+  ".config/user-dirs.dirs" ]
 
 def get_conflicts():
   conflicts = []
